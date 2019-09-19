@@ -1,0 +1,7 @@
+# SVG treated as an asset (binary) by default.
+*.svg      text
+
+# Normalizing line endings globally
+# Disabled because of https://github.com/mathiasbynens/dotfiles/issues/149 :(
+# * text=auto
+

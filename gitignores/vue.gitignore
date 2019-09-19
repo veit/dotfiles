@@ -1,0 +1,10 @@
+# gitignore template for Vue.js projects
+#
+# Recommended template: node.gitignore
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
