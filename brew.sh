@@ -32,6 +32,9 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
+# Install other useful packages.
+brew install jq
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
