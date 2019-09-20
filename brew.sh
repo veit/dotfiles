@@ -33,6 +33,8 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install other useful packages.
+brew install git
+brew install git-lfs
 brew install jq
 
 # Remove outdated versions from the cellar.
