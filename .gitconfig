@@ -95,5 +95,6 @@ required = true
 [apply]
 
 	# Detect whitespace errors when applying a patch
-	whitespace = fix
+    # First, it needs a more precise definition for different file types
+    # whitespace = fix
 
