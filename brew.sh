@@ -11,6 +11,7 @@ brew upgrade
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
@@ -36,6 +37,7 @@ fi;
 brew install git
 brew install git-lfs
 brew install jq
+brew install iterative/homebrew-dvc/dvc
 
 # Remove outdated versions from the cellar.
 brew cleanup
