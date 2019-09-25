@@ -18,8 +18,8 @@ filetype plugin indent on
 set autoindent
 
 " UI
-" show line numbers
-set number
+" show line and column number of the cursor position
+set ruler
 " show command in bottom bar
 set showcmd
 " visual autocomplete for command menu
