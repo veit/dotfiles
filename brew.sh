@@ -34,6 +34,7 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install other useful packages.
+brew install tree
 brew install git
 brew install git-lfs
 brew install jq
