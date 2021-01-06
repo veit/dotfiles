@@ -35,6 +35,7 @@ fi;
 
 # Install other useful packages.
 brew install tree
+brew install pwgen
 brew install git
 brew install git-lfs
 brew install jq
