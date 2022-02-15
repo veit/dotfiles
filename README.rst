@@ -9,6 +9,25 @@ Dotfiles
 .. |License| image:: https://img.shields.io/github/license/veit/dotfiles.svg
    :target: https://github.com/veit/dotfiles/blob/master/LICENSE
 
+Installation
+============
+
+#. Download and unpack:
+
+   .. code-block:: console
+        $ curl -O https://github.com/veit/dotfiles/archive/refs/heads/main.zip
+        $ unzip main.zip
+          Archive:  main
+          …
+             creating: dotfiles-main/
+          …
+
+#. Install
+
+   .. code-block:: console
+        $ cd dotfiles-main/
+        $ bash install.sh
+
 Pull-Requests
 =============
 
