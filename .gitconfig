@@ -116,3 +116,5 @@ required = true
     # First, it needs a more precise definition for different file types
     # whitespace = fix
 
+[big-picture]
+	viewer = /Applications/Firefox.app/Contents/MacOS/firefox
