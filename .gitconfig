@@ -121,6 +121,7 @@
 
 [init]
     templateDir = /Users/veit/.git-template
+    defaultBranch = main
 
 [big-picture]
     viewer = /Applications/Firefox.app/Contents/MacOS/firefox
