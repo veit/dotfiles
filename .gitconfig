@@ -19,15 +19,12 @@
     # See https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
 
-[filter "nbstrip_jq"]
-# clean = "jq --indent 1 \
-#         '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
-#         | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  \
-#         | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
-#         | .cells[].metadata = {} \
-#         '"
-# smudge = cat
-# required = true
+[credential]
+    helper = osxkeychain
+
+[init]
+    templateDir = /Users/veit/.git-template
+    defaultBranch = main
 
 [alias]
 
@@ -110,18 +107,21 @@
         fi \
     }; f"
 
+[filter "nbstrip_jq"]
+# clean = "jq --indent 1 \
+#         '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
+#         | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  \
+#         | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
+#         | .cells[].metadata = {} \
+#         '"
+# smudge = cat
+# required = true
+
 [apply]
 
     # Detect whitespace errors when applying a patch
     # First, it needs a more precise definition for different file types
     # whitespace = fix
-
-[credential]
-    helper = osxkeychain
-
-[init]
-    templateDir = /Users/veit/.git-template
-    defaultBranch = main
 
 [big-picture]
     viewer = /Applications/Firefox.app/Contents/MacOS/firefox
