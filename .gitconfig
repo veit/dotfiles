@@ -26,6 +26,11 @@
     templateDir = /Users/veit/.git-template
     defaultBranch = main
 
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+
 [alias]
 
     # View abbreviated SHA, description, and history graph of the latest 20 commits
