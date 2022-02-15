@@ -43,6 +43,7 @@ brew install git-lfs
 brew install pre-commit
 brew install jq
 brew install iterative/homebrew-dvc/dvc
+brew install docutils vale
 brew install ghostscript
 
 # Remove outdated versions from the cellar.
