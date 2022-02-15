@@ -42,7 +42,7 @@ brew install git
 brew install git-lfs
 brew install jq
 brew install iterative/homebrew-dvc/dvc
+brew install ghostscript
 
 # Remove outdated versions from the cellar.
 brew cleanup
-

@@ -12,7 +12,6 @@ Dotfiles
 Pull-Requests
 =============
 
-If you have suggestions for improvements and additions, I recommend you to create
-your own version with a fork. I accept pull requests, if they are small and
-atomic, as well as my own experience improve.
-
+If you have suggestions for improvements and additions, I recommend you to
+create your own version with a fork. I accept pull requests, if they are small
+and atomic, as well as my own experience improve.
