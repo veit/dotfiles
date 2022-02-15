@@ -119,6 +119,8 @@
 [credential]
     helper = osxkeychain
 
+[init]
+    templateDir = /Users/veit/.git-template
 
 [big-picture]
     viewer = /Applications/Firefox.app/Contents/MacOS/firefox
