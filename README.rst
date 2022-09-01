@@ -2,6 +2,9 @@
 Dotfiles
 ========
 
+Status
+======
+
 |Contributors| |License|
 
 .. |Contributors| image:: https://img.shields.io/github/contributors/veit/dotfiles.svg
