@@ -112,6 +112,18 @@
         fi \
     }; f"
 
+[diff "pdf"]
+    textconv=pdftohtml -stdout
+
+[diff "word"]
+    textconv=pandoc --to=markdown
+    binary=true
+    prompt=false
+
+[diff "excel"]
+    textconv=python3 /Users/veit/.config/git/exceltocsv.py
+    binary=true
+
 [filter "nbstrip_jq"]
 # clean = "jq --indent 1 \
 #         '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \

@@ -37,6 +37,7 @@ fi;
 brew install tree
 brew install pwgen
 brew install pandoc
+brew install pdftohtml
 brew install graphviz
 brew install git
 brew install git-lfs

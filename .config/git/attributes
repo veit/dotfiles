@@ -5,6 +5,10 @@
 # Disabled because of https://github.com/mathiasbynens/dotfiles/issues/149 :(
 # * text=auto
 
+*.pdf diff=pdf
+*.docx diff=word
+*.xlsx diff=excel
+
 # jq filter for Jupyter Notebooks
 # Warning: If you want to do git rebase, you should first disable the following
 # line.
