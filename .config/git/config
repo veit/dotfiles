@@ -23,7 +23,7 @@
     helper = osxkeychain
 
 [init]
-    templateDir = /Users/veit/.git-template
+    templateDir = /Users/veit/.config/git/template
     defaultBranch = main
 
 [color]
