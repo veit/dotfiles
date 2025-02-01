@@ -1,16 +1,20 @@
 # SVG treated as an asset (binary) by default.
-*.svg      text
+*.svg text
 
-# Normalizing line endings globally
-# Disabled because of https://github.com/mathiasbynens/dotfiles/issues/149 :(
-# * text=auto
-
+*.avif diff=exiftool
+*.bmp diff=exiftool
+*.docx diff=pandoc-to-markdown
+*.gif diff=exiftool
+*.jpeg diff=exiftool
+*.jpg diff=exiftool
+*.odt diff=pandoc-to-markdown
 *.pdf diff=pdf
-*.docx diff=word
+*.png diff=exiftool
+*.rtf diff=pandoc-to-markdown
+*.webp diff=exiftool
 *.xlsx diff=excel
 
 # jq filter for Jupyter Notebooks
 # Warning: If you want to do git rebase, you should first disable the following
 # line.
 *.ipynb filter=nbstrip_jq
-
