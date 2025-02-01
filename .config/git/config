@@ -1,144 +1,148 @@
-[user]
-    name = veit
-    email = kontakt@veit-schiele.de
+# If your git config is not currently located in ~/.config/git/, you can find
+# migration instructions at 
+# https://www.python4data.science/en/latest/productive/git/install-config.html#migrate-git-config
 
-[core]
-
-    # Use custom `.gitattributes`
-    attributesfile = ~/.gitattributes
-
-    # Make `git rebase` safer on macOS.
-    # See https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
-    trustctime = false
-
-    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
-    # See https://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-    precomposeunicode = false
-
-    # Speed up commands involving untracked files such as `git status`.
-    # See https://git-scm.com/docs/git-update-index#_untracked_cache
-    untrackedCache = true
-
-[credential]
-    helper = osxkeychain
-
-[init]
-    templateDir = /Users/veit/.config/git/template
-    defaultBranch = main
-
-[color]
-    diff = auto
-    status = auto
-    branch = auto
+[advice]
+    # https://www.python4data.science/en/latest/productive/git/work.html#git-statushints
+    statusHints = false
 
 [alias]
+    # https://www.python4data.science/en/latest/productive/git/branch.html#merge-aliases
+    list-unmerged = diff --name-only --diff-filter U
+    edit-unmerged = !git diff --name-only --diff-filter U | xargs -r $(git var GIT_EDITOR)
 
-    # View abbreviated SHA, description, and history graph of the latest 20 commits
-    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    # https://www.python4data.science/en/latest/productive/git/advanced/batch.html#list-changed
+    list-changed = diff --name-only --diff-filter d
 
-    # View the current working tree status using the short format
-    s = status -s
+[branch]
+    # https://www.python4data.science/en/latest/productive/git/branch.html#committerdate
+    sort = -committerdate
 
-    # Show the diff between the latest commit and the current state
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+# https://www.python4data.science/en/latest/productive/git/install-config.html#git-colouring
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
 
-    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
-    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
 
-    # Pull in remote changes for the current repository and all its submodules
-    p = git pull --recurse-submodules
+[commit]
+    # https://www.python4data.science/en/latest/productive/git/best-practices.html#gitlab-references
+    cleanup = scissors
 
-    # Clone a repository including all submodules
-    c = clone --recursive
+[core]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#excludesfile
+    excludesfile = ~/.config/git/ignore
+    attributesfile = ~/.config/git/attributes
 
-    # Commit all changes
-    ca = !git add -A && git commit -av
+    # https://www.python4data.science/en/latest/productive/git/advanced/shell.html#git-delta
+    pager = delta
 
-    # Switch to a branch, creating it if necessary
-    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+[credential]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#_credential-helper
+    helper = osxkeychain
 
-    # Show verbose output about tags, branches or remotes
-    tags = tag -l
-    branches = branch -a
-    remotes = remote -v
+[delta]
+    # https://www.python4data.science/en/latest/productive/git/advanced/shell.html#delta-config
+    hyperlinks = true
+    line-numbers = true
+    navigate = true
 
-    # List aliases
-    aliases = config --get-regexp alias
+[diff "exiftool"]
+    # https://www.python4data.science/en/latest/productive/git/advanced/binary-files.html#exiftool
+    textconv = exiftool --composite -x 'Exiftool:*'
+    cachetextconv = true
+    xfuncname = "^-.*$"
 
-    # Amend the currently staged files to the latest commit
-    amend = commit --amend --reuse-message=HEAD
+[diff "pandoc-to-markdown"]
+    # https://www.python4data.science/en/latest/productive/git/advanced/binary-files.html#pandoc-to-markdown
+    textconv = pandoc --to markdown
+    cachetextconv = true
 
-    # Credit an author on the latest commit
-    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-    # Interactive rebase with the given number of latest commits
-    reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-    # Remove the old tag with this name and tag the latest commit with it.
-    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-    # Find branches containing commit
-    fb = "!f() { git branch -a --contains $1; }; f"
-
-    # Find tags containing commit
-    ft = "!f() { git describe --always --contains $1; }; f"
-
-    # Find commits by source code
-    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-    # Find commits by commit message
-    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
-    # Remove branches that have already been merged with master
-    # a.k.a. ‘delete merged’
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-    # List contributors with number of commits
-    contributors = shortlog --summary --numbered
-
-    # Merge GitHub pull request on top of the current branch or,
-    # if a branch name is specified, on top of the specified branch
-    mpr = "!f() { \
-        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-        declare branch=\"${2:-$currentBranch}\"; \
-        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-            git fetch origin refs/pull/$1/head:pr/$1 && \
-            git checkout -B $branch && \
-            git rebase $branch pr/$1 && \
-            git checkout -B $branch && \
-            git merge pr/$1 && \
-            git branch -D pr/$1 && \
-            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-        fi \
-    }; f"
-
-[diff "pdf"]
-    textconv=pdftohtml -stdout
-
-[diff "word"]
-    textconv=pandoc --to=markdown
-    binary=true
-    prompt=false
-
-[diff "excel"]
-    textconv=python3 /Users/veit/.config/git/exceltocsv.py
-    binary=true
+[fetch]
+    # https://www.python4data.science/en/latest/productive/git/best-practices.html#fetch-prune
+    prune = true
+    # https://www.python4data.science/en/latest/productive/git/tag.html#prune-tags
+    pruneTags = true
+    all = true
 
 [filter "nbstrip_jq"]
-# clean = "jq --indent 1 \
-#         '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
-#         | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  \
-#         | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
-#         | .cells[].metadata = {} \
-#         '"
-# smudge = cat
-# required = true
+    # https://www.python4data.science/en/latest/productive/git/advanced/jupyter-notebooks.html#nbstrip-jq
+    clean = "jq --indent 1 \
+            '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
+            | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  \
+            | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
+            | .cells[].metadata = {} \
+            '"
+    smudge = cat
+        required = true
 
-[apply]
+[help]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#git-autocorrect
+    autocorrect = immediate
 
-    # Detect whitespace errors when applying a patch
-    # First, it needs a more precise definition for different file types
-    # whitespace = fix
+[includeIf "gitdir:~/private"]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#includeif
+    path = ~/.config/git/config-private
 
-[big-picture]
-    viewer = /Applications/Firefox.app/Contents/MacOS/firefox
+[init]
+    # https://www.python4data.science/en/latest/productive/git/work.html#git-init
+    defaultBranch = main
+
+[interactive]
+    # https://www.python4data.science/en/latest/productive/git/advanced/shell.html#delta_config
+    diffFilter = delta --color-only
+
+    # https://www.python4data.science/en/latest/productive/git/work.html#git-singlekey
+    singleKey = true
+
+[log]
+    # https://www.python4data.science/en/latest/productive/git/review.html#term-git-log-follow-PATH-TO-FILE
+    follow = true
+
+[merge]
+    # https://www.python4data.science/en/latest/productive/git/branch.html#merge-conflictstyle
+    conflictStyle = zdiff3
+
+    # https://www.python4data.science/en/latest/productive/git/work.html#git-autostash
+    autoStash = true
+
+[pager]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#git-pagination
+    status = true
+
+[pull]
+    rebase = true
+
+[push]
+    # https://www.python4data.science/en/latest/productive/git/branch.html#push-autoSetupRemote
+    autoSetupRemote = true
+
+[rebase]
+    abbreviateCommands = true
+    autoSquash = true
+    # https://www.python4data.science/en/latest/productive/git/work.html#git-autostash
+    autoStash = true
+    # https://www.python4data.science/en/latest/productive/git/rebase.html#rebase-updaterefs
+    updateRefs = true
+
+[rerere]
+    # https://www.python4data.science/en/latest/productive/git/branch.html#rerere
+    enabled = true
+    autoUpdate = true
+
+[stash]
+    # https://www.python4data.science/en/latest/productive/git/work.html#showpatch
+    showPatch = true
+
+[tag]
+    # https://www.python4data.science/en/latest/productive/git/tag.html#tag-sort
+    sort = version:refname
+
+[user]
+    # https://www.python4data.science/en/latest/productive/git/install-config.html#basic-git-config
+    name = veit
+    email = veit@cusy.io
