@@ -16,9 +16,7 @@ fi
 cd ~/spack
 git checkout releases/v0.17
 
-python3 -m pip install --user pipenv
-
-for script in brew spack pipenv nbstrip;
+for script in brew spack nbstrip;
 do
 grep -q $script ~/.bash_profile || echo "source $DOTFILES/$script.sh" >> ~/.bash_profile
 done
