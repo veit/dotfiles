@@ -5,6 +5,7 @@
 *.bmp diff=exiftool
 *.docx diff=pandoc-to-markdown
 *.gif diff=exiftool
+*.ipynb diff=pandoc-to-markdown
 *.jpeg diff=exiftool
 *.jpg diff=exiftool
 *.odt diff=pandoc-to-markdown
