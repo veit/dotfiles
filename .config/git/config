@@ -18,6 +18,10 @@
     # https://www.python4data.science/en/latest/productive/git/branch.html#committerdate
     sort = -committerdate
 
+# Accelerates git switch
+[checkout]
+    workers = 0
+
 # https://www.python4data.science/en/latest/productive/git/install-config.html#git-colouring
 [color "branch"]
     current = yellow reverse
