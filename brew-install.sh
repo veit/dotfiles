@@ -34,19 +34,22 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install other useful packages.
-brew install tree
-brew install pwgen
-brew install pandoc
-brew install pdftohtml
-brew install graphviz
-brew install git
-brew install git-lfs
-brew install git-filter-repo
-brew install pre-commit
-brew install jq
-brew install iterative/homebrew-dvc/dvc
-brew install docutils vale
+brew install docutils
+brew install dvc
 brew install ghostscript
+brew install git
+brew install git-delta
+brew install git-filter-repo
+brew install git-lfs
+brew install graphviz
+brew install jq
+brew install pdftohtml
+brew install pandoc
+brew install pre-commit
+brew install pwgen
+brew install tree
+brew install uv
+brew install vale
 
 # Remove outdated versions from the cellar.
 brew cleanup
