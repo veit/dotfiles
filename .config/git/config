@@ -73,6 +73,12 @@
     pruneTags = true
     all = true
 
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
 [filter "nbstrip_jq"]
     # https://www.python4data.science/en/latest/productive/git/advanced/jupyter-notebooks.html#nbstrip-jq
     clean = "jq --indent 1 \
