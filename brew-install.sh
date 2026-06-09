@@ -48,7 +48,6 @@ brew install pandoc
 brew install pre-commit
 brew install pwgen
 brew install tree
-brew install uv
 brew install vale
 
 # Remove outdated versions from the cellar.
