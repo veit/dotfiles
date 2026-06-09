@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh?
 
-# Install command-line tools using Homebrew.
+# Install command-line tools.
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -10,7 +10,6 @@ brew upgrade
 
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
-
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -23,15 +22,6 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed 
-# Install a modern version of Bash.
-brew install bash
-brew install bash-completion2
-
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
 
 # Install other useful packages.
 brew install docutils
@@ -51,4 +41,4 @@ brew install tree
 brew install vale
 
 # Remove outdated versions from the cellar.
-brew cleanup
+brew cleanup && brew doctor

@@ -29,7 +29,7 @@ Installation
 
    .. code-block:: console
         $ cd dotfiles-main/
-        $ bash install.sh
+        $ zsh install.sh
 
 Pull-Requests
 =============
