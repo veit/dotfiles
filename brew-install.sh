@@ -33,8 +33,9 @@ brew install git-filter-repo
 brew install git-lfs
 brew install graphviz
 brew install jq
-brew install pdftohtml
 brew install pandoc
+brew install pdftohtml
+brew install pinact
 brew install pre-commit
 brew install pwgen
 brew install tree
